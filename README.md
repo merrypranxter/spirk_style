@@ -1,80 +1,32 @@
-# spirk_style 🖖💫
+# spirk_style 💖🖖✨
 
-A fan repository for **Spirk** — the beloved Kirk/Spock ship from *Star Trek: The Original Series* (TOS), styled in the classic DeviantArt fanfic aesthetic.
+THIS REPO IS NOW FOR MAXIMUM 2003 DEVIANTART ENERGY.
 
-> *"I have been, and always shall be, your friend."*  
-> — Spock, *Star Trek II: The Wrath of Khan*
+If it feels a little too polished, good news: we fixed that.
+Now it is louder, pinker, sparkly-er, and dramatically emotional in public.
 
----
+## what is this
 
-## What is Spirk?
+A tiny fanfic styling pack for **Kirk/Spock (Spirk)** pages that should look like:
+- made at 2:14 AM
+- while listening to Evanescence
+- after drawing five notebook hearts around `K + S`
 
-**Spirk** = **Spock** + k**irk**  
+## files
 
-The ship pairing of:
-- **James T. Kirk** — Captain of the USS Enterprise, played by **William Shatner** (classic TOS era, young & impulsive)
-- **S'chn T'gai Spock** — First Officer/Science Officer, played by **Leonard Nimoy** (classic TOS era, young & stoic)
+- `css/spirk_style.css` → glittery over-the-top stylesheet
+- `templates/fic_template.html` → blank-ish fic template with chaotic fan-layout energy
+- `fics/sample_fic.html` → sample fic with BIG FEELINGS
 
-Their dynamic — the passionate Human heart vs. the disciplined Vulcan mind — has captivated fans since the 1960s and is one of the oldest and most beloved ships in all of fandom. Spirk art and fanfic have been a staple on DeviantArt for decades.
+## quick start
 
----
+1. copy the template
+2. write your story
+3. add too many hearts
+4. open in browser
+5. cry
 
-## What's in This Repo
+## disclaimer
 
-```
-spirk_style/
-├── README.md               ← you are here
-├── css/
-│   └── spirk_style.css     ← DeviantArt-inspired stylesheet (dark TOS aesthetic)
-├── templates/
-│   └── fic_template.html   ← HTML template for posting/reading fanfic
-└── fics/
-    └── sample_fic.html     ← A short starter Spirk fic to get you going
-```
-
----
-
-## Quick Start
-
-1. Copy `templates/fic_template.html` for each new fic
-2. Link the stylesheet: `<link rel="stylesheet" href="../css/spirk_style.css">`
-3. Fill in title, rating, tags, summary, and body text
-4. Save your `.html` file into the `fics/` folder
-5. Open in any browser — it'll look right at home on a DeviantArt page from 2008
-
----
-
-## Fanfic Header Format
-
-Each fic should include a header block with:
-
-| Field | Example |
-|-------|---------|
-| **Title** | *Five Times Spock Held His Tongue* |
-| **Rating** | G / T / M / E |
-| **Pairing** | Kirk/Spock (Spirk) |
-| **Universe** | TOS (The Original Series) |
-| **Tags** | hurt/comfort, slow burn, mind meld, 5+1 things |
-| **Summary** | A short description (1–3 sentences) |
-| **Disclaimer** | *Star Trek belongs to Paramount/CBS. No profit made.* |
-
----
-
-## Style Notes (The DeviantArt Vibe)
-
-The CSS in `css/spirk_style.css` captures the classic DA fanfic aesthetic:
-- Deep space dark background 🌌
-- LCARS-ish accent colors (Starfleet gold, red alert, teal)
-- Clean serif body font for readability
-- Horizontal rule dividers between sections
-- Italicized author notes in a distinct color
-
----
-
-## Contributing / Adding Fics
-
-This is a personal/creative repo — add fics freely to `fics/` using the template. Suggested naming convention: `fic_title_with_underscores.html`
-
----
-
-*Spock and Kirk are fictional characters owned by Paramount/CBS. This is nonprofit fan creative work. Live long and prosper. 🖖*
+Star Trek belongs to Paramount/CBS.
+This is nonprofit fan work + dramatic nonsense.
