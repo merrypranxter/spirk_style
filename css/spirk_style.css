@@ -1,0 +1,576 @@
+/*
+ * spirk_style.css
+ * DeviantArt-style fanfic stylesheet for Spirk (Kirk/Spock TOS)
+ *
+ * Two themes available — apply to <body>:
+ *   (default / no class) = deep space starfield  🌌
+ *   class="theme-pink"   = soft pink manga/anime 🌸
+ *
+ * Key colors:
+ *   Kirk gold  : #e8a020  (command gold uniform)
+ *   Spock blue : #6b9fd4  (science blue uniform)
+ *   Star gold  : #ffd966
+ *   Heart pink : #f28bab
+ */
+
+/* ─── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&family=IM+Fell+English:ital@0;1&display=swap');
+
+/* ─── CSS Custom Properties ────────────────────────────────────────────────── */
+:root {
+  /* shared */
+  --kirk-gold:   #e8a020;
+  --spock-blue:  #6b9fd4;
+  --heart-pink:  #f28bab;
+  --heart-red:   #e84060;
+  --star-gold:   #ffd966;
+
+  /* space theme (default) */
+  --bg:          #080c1c;
+  --bg2:         #0d1430;
+  --surface:     rgba(255,255,255,0.04);
+  --border:      rgba(107,159,212,0.45);
+  --text:        #ddd8d0;
+  --text-dim:    #8899aa;
+  --text-head:   #f4ecdc;
+  --accent:      var(--kirk-gold);
+  --accent2:     var(--spock-blue);
+  --note-bg:     rgba(107,159,212,0.10);
+  --note-border: var(--spock-blue);
+  --summary-bg:  rgba(232,160,32,0.08);
+  --bubble-bg:   #d4c8e8;
+  --bubble-text: #2a2040;
+  --frame-color: var(--spock-blue);
+}
+
+body.theme-pink {
+  --bg:          #fce8ef;
+  --bg2:         #f8d0dc;
+  --surface:     rgba(255,255,255,0.55);
+  --border:      rgba(242,139,171,0.5);
+  --text:        #3a2030;
+  --text-dim:    #8a6070;
+  --text-head:   #1a0818;
+  --accent:      #d44070;
+  --accent2:     #5b8fc4;
+  --note-bg:     rgba(91,143,196,0.10);
+  --note-border: #5b8fc4;
+  --summary-bg:  rgba(212,64,112,0.07);
+  --bubble-bg:   #e8d8f0;
+  --bubble-text: #2a1840;
+  --frame-color: #d44070;
+}
+
+/* ─── Reset & Base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'IM Fell English', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.8;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ─── Space Theme: Starfield ───────────────────────────────────────────────── */
+
+/* Starfield via layered radial gradients — no JS needed */
+body:not(.theme-pink)::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    /* deep nebula gradients */
+    radial-gradient(ellipse 60% 40% at 15% 25%, rgba(30,50,120,0.5)  0%, transparent 70%),
+    radial-gradient(ellipse 50% 35% at 85% 75%, rgba(70,20,100,0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 60% 10%, rgba(10,30, 80,0.4)  0%, transparent 60%),
+    /* tiny star dots — multiple small radial gradients */
+    radial-gradient(circle 1px at 10% 15%, #ffd966 0%, transparent 100%),
+    radial-gradient(circle 1px at 22% 42%, #ffffff 0%, transparent 100%),
+    radial-gradient(circle 1px at 35%  8%, #ffd966 0%, transparent 100%),
+    radial-gradient(circle 1px at 48% 60%, #ffffff 0%, transparent 100%),
+    radial-gradient(circle 1px at 55% 30%, #ffd966 0%, transparent 100%),
+    radial-gradient(circle 1px at 63% 78%, #ffffff 0%, transparent 100%),
+    radial-gradient(circle 1px at 70% 20%, #ffd966 0%, transparent 100%),
+    radial-gradient(circle 1px at 78% 55%, #ffffff 0%, transparent 100%),
+    radial-gradient(circle 1px at 82%  5%, #ffd966 0%, transparent 100%),
+    radial-gradient(circle 1px at 90% 38%, #ffffff 0%, transparent 100%),
+    radial-gradient(circle 1px at  5% 70%, #ffd966 0%, transparent 100%),
+    radial-gradient(circle 1px at 15% 85%, #ffffff 0%, transparent 100%),
+    radial-gradient(circle 1px at 28% 95%, #ffd966 0%, transparent 100%),
+    radial-gradient(circle 1px at 42% 88%, #ffffff 0%, transparent 100%),
+    radial-gradient(circle 1px at 58% 92%, #ffd966 0%, transparent 100%),
+    radial-gradient(circle 1px at 75% 98%, #ffffff 0%, transparent 100%),
+    radial-gradient(circle 1.5px at 92% 80%,#ffd966 0%, transparent 100%),
+    radial-gradient(circle 1.5px at  3% 50%, #ffd966 0%, transparent 100%),
+    radial-gradient(circle 2px   at 96% 15%, #ffd966 0%, transparent 100%),
+    radial-gradient(circle 2px   at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 100%);
+}
+
+/* Sparkle stars (4-point) using box-shadow */
+body:not(.theme-pink) .page-wrap::after {
+  content: '✦ ✦ ✦';
+  position: fixed;
+  top: 5%; right: 5%;
+  font-size: 1.2rem;
+  color: var(--star-gold);
+  opacity: 0.45;
+  pointer-events: none;
+  letter-spacing: 1.5rem;
+  animation: twinkle 4s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  0%   { opacity: 0.2; }
+  50%  { opacity: 0.7; }
+  100% { opacity: 0.3; }
+}
+
+/* ─── Pink Theme: Halftone dots ────────────────────────────────────────────── */
+
+body.theme-pink::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.55) 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
+  opacity: 0.7;
+}
+
+/* ─── Floating Hearts (decorative header) ──────────────────────────────────── */
+
+.hearts {
+  text-align: center;
+  font-size: 1.4rem;
+  letter-spacing: 0.6rem;
+  margin-bottom: 0.4rem;
+  pointer-events: none;
+  user-select: none;
+  animation: heartFloat 3s ease-in-out infinite alternate;
+}
+
+.hearts .h-blue  { color: #4d8fda; }
+.hearts .h-gold  { color: var(--kirk-gold); }
+.hearts .h-pink  { color: var(--heart-pink); }
+.hearts .h-red   { color: var(--heart-red); }
+
+@keyframes heartFloat {
+  0%   { transform: translateY(0);    }
+  50%  { transform: translateY(-5px); }
+  100% { transform: translateY(2px);  }
+}
+
+/* ─── Page Wrapper ─────────────────────────────────────────────────────────── */
+
+.page-wrap {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Framed border (like Image 1's blue frame) ────────────────────────────── */
+
+.page-wrap.framed {
+  border: 2px solid var(--frame-color);
+  border-radius: 8px;
+  box-shadow:
+    0 0 0 6px var(--bg),
+    0 0 0 8px var(--frame-color),
+    0 0 40px rgba(107,159,212,0.15);
+  padding: 2.5rem 2rem 4rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* ─── Site Header ─────────────────────────────────────────────────────────── */
+
+.site-header {
+  text-align: center;
+  padding-bottom: 1.2rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+.site-header .site-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2rem;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 20px rgba(232,160,32,0.4);
+}
+
+.site-header .site-subtitle {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  font-style: italic;
+  margin-top: 0.25rem;
+}
+
+/* ─── Uniform color strips ─────────────────────────────────────────────────── */
+
+.uniform-strip {
+  display: flex;
+  gap: 0;
+  height: 5px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.uniform-strip .kirk  { background: var(--kirk-gold); flex: 1; }
+.uniform-strip .spock { background: var(--spock-blue); flex: 1; }
+
+/* ─── Fic Header Block ─────────────────────────────────────────────────────── */
+
+.fic-header {
+  background: var(--surface);
+  border-left: 5px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 1.8rem;
+  backdrop-filter: blur(4px);
+}
+
+.fic-title {
+  font-family: 'IM Fell English', Georgia, serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text-head);
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.fic-author {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  margin-bottom: 1.1rem;
+}
+
+.fic-author a {
+  color: var(--accent2);
+  text-decoration: none;
+}
+.fic-author a:hover { text-decoration: underline; }
+
+/* ─── Metadata Table ────────────────────────────────────────────────────────── */
+
+.fic-meta {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.84rem;
+}
+
+.fic-meta td {
+  padding: 0.18rem 0.6rem 0.18rem 0;
+  vertical-align: top;
+}
+
+.fic-meta td:first-child {
+  color: var(--accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+  width: 90px;
+  font-size: 0.77rem;
+}
+
+/* ─── Rating Badges ─────────────────────────────────────────────────────────── */
+
+.rating {
+  display: inline-block;
+  padding: 0.15em 0.6em;
+  border-radius: 4px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.rating-G  { background: #2a6e2a; color: #aeffae; }
+.rating-T  { background: #6e5a1a; color: #ffe9a0; }
+.rating-M  { background: #6e2a1a; color: #ffbcae; }
+.rating-E  { background: #4a1a6e; color: #e8b8ff; }
+
+/* ─── Tags ───────────────────────────────────────────────────────────────────── */
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin-top: 0.3rem;
+  padding: 0;
+}
+
+.tag-list li {
+  background: rgba(107,159,212,0.12);
+  border: 1px solid rgba(107,159,212,0.4);
+  border-radius: 20px;
+  color: var(--accent2);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.78rem;
+  padding: 0.1em 0.75em;
+}
+
+body.theme-pink .tag-list li {
+  background: rgba(212,64,112,0.08);
+  border-color: rgba(212,64,112,0.35);
+  color: #b03060;
+}
+
+/* ─── Summary ───────────────────────────────────────────────────────────────── */
+
+.fic-summary {
+  background: var(--summary-bg);
+  border: 1px solid rgba(232,160,32,0.3);
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  font-style: italic;
+  color: var(--text);
+  font-size: 0.95rem;
+  margin-bottom: 1.8rem;
+  font-family: 'IM Fell English', Georgia, serif;
+}
+
+.fic-summary::before {
+  content: "Summary: ";
+  font-style: normal;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline;
+}
+
+body.theme-pink .fic-summary { border-color: rgba(212,64,112,0.3); }
+
+/* ─── Dividers ───────────────────────────────────────────────────────────────── */
+
+.fic-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.8rem 0;
+}
+
+.fic-divider.section {
+  border-top: 2px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+/* scene break */
+.scene-break {
+  text-align: center;
+  color: var(--accent);
+  font-size: 1.3rem;
+  letter-spacing: 0.8em;
+  margin: 2.2rem 0;
+  user-select: none;
+  opacity: 0.75;
+}
+
+/* ─── Author Notes ───────────────────────────────────────────────────────────── */
+
+.author-note {
+  background: var(--note-bg);
+  border-left: 3px solid var(--note-border);
+  border-radius: 0 6px 6px 0;
+  padding: 0.8rem 1.1rem;
+  font-style: italic;
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  margin: 1.5rem 0;
+  font-family: 'Nunito', sans-serif;
+}
+
+.author-note strong {
+  font-style: normal;
+  color: var(--accent2);
+  font-size: 0.77rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+/* ─── Speech Bubble (comic style, like Image 2) ────────────────────────────── */
+
+.speech-bubble {
+  position: relative;
+  display: inline-block;
+  background: var(--bubble-bg);
+  color: var(--bubble-text);
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1rem;
+  line-height: 1.4;
+  padding: 0.75rem 1.1rem;
+  border-radius: 18px;
+  margin: 0.5rem 0 1.5rem 1.5rem;
+  max-width: 85%;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+}
+
+/* Tail pointing bottom-left (Spock says it, faces left) */
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 22px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 15px solid var(--bubble-bg);
+}
+
+/* Kirk bubble variant (tail right) */
+.speech-bubble.kirk {
+  margin-left: auto;
+  margin-right: 1.5rem;
+  text-align: right;
+}
+
+.speech-bubble.kirk::after {
+  left: auto;
+  right: 22px;
+}
+
+/* ─── Chapter Title ─────────────────────────────────────────────────────────── */
+
+.chapter-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.15rem;
+  color: var(--accent);
+  text-align: center;
+  margin: 2.8rem 0 1.6rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.04em;
+}
+
+/* ─── Fic Body ───────────────────────────────────────────────────────────────── */
+
+.fic-body {
+  color: var(--text);
+}
+
+.fic-body p {
+  margin-bottom: 1.15em;
+  text-indent: 2em;
+}
+
+.fic-body p:first-child,
+.fic-body p.no-indent {
+  text-indent: 0;
+}
+
+.fic-body em { color: var(--text-head); }
+.fic-body strong { color: var(--accent); }
+
+/* Vulcan/mind-meld text */
+.fic-body .mindmeld {
+  color: #c0a8e8;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+body.theme-pink .fic-body .mindmeld { color: #8060b8; }
+
+/* Comm/intercom text */
+.fic-body .comm {
+  color: #80d498;
+  font-style: italic;
+}
+
+body.theme-pink .fic-body .comm { color: #308050; }
+
+/* ─── Decorative Heart Divider ──────────────────────────────────────────────── */
+
+.heart-divider {
+  text-align: center;
+  margin: 1.5rem 0;
+  font-size: 1.1rem;
+  opacity: 0.7;
+  user-select: none;
+  letter-spacing: 0.5rem;
+}
+
+/* ─── Disclaimer ─────────────────────────────────────────────────────────────── */
+
+.disclaimer {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.77rem;
+  color: var(--text-dim);
+  font-style: italic;
+  text-align: center;
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  opacity: 0.7;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────────────── */
+
+.site-footer {
+  text-align: center;
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.site-footer a { color: var(--accent2); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+
+/* ─── Theme toggle button ────────────────────────────────────────────────────── */
+
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.35rem 0.9rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.8rem;
+  color: var(--text);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s, color 0.2s;
+}
+
+.theme-toggle:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  body  { font-size: 15px; }
+  .fic-title { font-size: 1.5rem; }
+  .site-header .site-title { font-size: 1.5rem; }
+  .page-wrap { padding: 1rem 1rem 3rem; }
+  .page-wrap.framed { padding: 1.5rem 1rem 3rem; margin: 0.5rem; }
+  .speech-bubble { font-size: 0.88rem; }
+}
